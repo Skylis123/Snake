@@ -36,12 +36,12 @@ function startGame(){
             document.getElementById(i).appendChild(playingCells);
         }
     }
-    document.getElementById(55).src = 'body_cell.png';
-    document.getElementById(54).src = 'body_cell.png';
-    document.getElementById(53).src = 'body_cell.png';
-    playCells[5][5] = 1;
-    playCells[5][4] = 2;
-    playCells[5][3] = 3;
+    document.getElementById(x * 10 + y).src = 'body_cell.png';
+    document.getElementById(x * 10 + y - 1).src = 'body_cell.png';
+    document.getElementById(x * 10 + y - 2).src = 'body_cell.png';
+    playCells[x][y] = 1;
+    playCells[x][y - 1] = 2;
+    playCells[x][y - 2] = 3;
 
     okFood = 0;
     while (okFood == 0) {
