@@ -1,7 +1,7 @@
 let okStopPlaying;
 let x, y;
 let okFood, okLost;
-let setIntervalID ;
+let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
 
 
 let playCells = Array(11).fill(0).map(() => Array(11).fill(0));
@@ -10,7 +10,6 @@ function startGame(){
     x = 5;
     y = 5;
     okLost = 0;
-    clearInterval(setIntervalID);
     for (let i = 1; i <= 9; ++i) {
         document.getElementById(i).innerHTML = "";
         for (let j = 1; j <= 9; ++j) {
@@ -53,14 +52,15 @@ function startGame(){
             okFood = 1;
         }
     }
-    
-    //clearInterval(setIntervalID);
 }
 
 
 document.addEventListener('keydown', (event)=> {  
-    //setIntervalID = setInterval(function () {
-        if (event.key == "d") {
+    if (event.key == "d") {
+        clearInterval(setIntervalIDa);
+        clearInterval(setIntervalIDs);
+        clearInterval(setIntervalIDw);
+        setIntervalIDd = setInterval(function () {
             if (playCells[x][y + 1] == -1) {
                 okFood = 0;
             }
@@ -69,13 +69,22 @@ document.addEventListener('keydown', (event)=> {
                 playCells[x][y + 1] = 1;
                 moveCells(x, y);
                 ++y;
-                console.log(playCells[x][y]);
             } else if (playCells[x][y + 1] != 2){
-                okLost = 1;
+                okLost = 1 ;
+                clearInterval(setIntervalIDs);
+                clearInterval(setIntervalIDa);
+                clearInterval(setIntervalIDw);
+                clearInterval(setIntervalIDd);
+                document.getElementById('YouLostMessage').innerHTML = "You Lost"
             } 
-        } 
+        },200)
+    } 
 
-        if (event.key == "w") {
+    if (event.key == "w") {
+        clearInterval(setIntervalIDa);
+        clearInterval(setIntervalIDs);
+        clearInterval(setIntervalIDd);
+        setIntervalIDw = setInterval(function () {
             if (playCells[x - 1][y] == -1) {
                 okFood = 0;
             }
@@ -86,10 +95,21 @@ document.addEventListener('keydown', (event)=> {
                 --x;
                 console.log(playCells[x][y]);
             } else if (playCells[x - 1][y] != 2) {
-                okLost = 1;
+                okLost = 1 ;
+                clearInterval(setIntervalIDs);
+                clearInterval(setIntervalIDa);
+                clearInterval(setIntervalIDw);
+                clearInterval(setIntervalIDd);
+                document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
-        } 
-        if (event.key == "a") {
+        },200)
+    } 
+
+    if (event.key == "a") {
+        clearInterval(setIntervalIDw);
+        clearInterval(setIntervalIDs);
+        clearInterval(setIntervalIDd);
+        setIntervalIDa = setInterval(function () {
             if (playCells[x][y - 1] == -1) {
                 okFood = 0;
             }
@@ -100,11 +120,21 @@ document.addEventListener('keydown', (event)=> {
                 --y;
                 console.log(playCells[x][y]);
             } else if (playCells[x][y - 1] != 2){
-                okLost = 1;
+                okLost = 1 ;
+                clearInterval(setIntervalIDs);
+                clearInterval(setIntervalIDa);
+                clearInterval(setIntervalIDw);
+                clearInterval(setIntervalIDd);
+                document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
+        },200)
         } 
 
-        if (event.key == "s") {    
+    if (event.key == "s") {  
+        clearInterval(setIntervalIDa);
+        clearInterval(setIntervalIDw);
+        clearInterval(setIntervalIDd);
+        setIntervalIDs = setInterval(function () {
             if (playCells[x + 1][y] == -1) {
                 okFood = 0;
             }
@@ -116,12 +146,13 @@ document.addEventListener('keydown', (event)=> {
                 console.log(playCells[x][y]);
             } else if (playCells[x + 1][y] != 2) {
                 okLost = 1 ;
+                clearInterval(setIntervalIDs);
+                clearInterval(setIntervalIDa);
+                clearInterval(setIntervalIDw);
+                clearInterval(setIntervalIDd);
+                document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
-        }
-    //}, 500)
-    if (okLost == 1) {
-        clearInterval(setIntervalID);
-        document.getElementById('YouLostMessage').innerHTML = "You Lost"
+        },200)
     }
 });
 
