@@ -71,7 +71,7 @@ document.addEventListener('keydown', (event)=> {
                 playCells[rowX][columnY + 1] = 1;
                 moveCells(rowX, columnY);
                 ++columnY;
-            } else if (playCells[rowX][columnY + 1] != 2){
+            } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -96,7 +96,7 @@ document.addEventListener('keydown', (event)=> {
                 moveCells(rowX, columnY);
                 --rowX;
                 console.log(playCells[rowX][columnY]);
-            } else if (playCells[rowX - 1][columnY] != 2) {
+            } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -121,7 +121,7 @@ document.addEventListener('keydown', (event)=> {
                 moveCells(rowX, columnY);
                 --columnY;
                 console.log(playCells[rowX][columnY]);
-            } else if (playCells[rowX][columnY - 1] != 2){
+            } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -146,7 +146,7 @@ document.addEventListener('keydown', (event)=> {
                 moveCells(rowX, columnY);
                 ++rowX;
                 console.log(playCells[rowX][columnY]);
-            } else if (playCells[rowX + 1][columnY] != 2) {
+            } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
