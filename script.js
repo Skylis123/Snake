@@ -176,7 +176,6 @@ function moveCells(X, Y) {
             ++playCells[row][column];
             ++row;
         } else if (okFood == 0) {
-            document.getElementById(row * 10 + column).src = 'body_cell.png';
             ++playCells[row][column];
             ok = 1;
             while (okFood == 0) {
