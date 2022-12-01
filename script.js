@@ -95,7 +95,6 @@ document.addEventListener('keydown', (event)=> {
                 playCells[rowX - 1][columnY] = 1;
                 moveCells(rowX, columnY);
                 --rowX;
-                console.log(playCells[rowX][columnY]);
             } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
@@ -120,7 +119,6 @@ document.addEventListener('keydown', (event)=> {
                 playCells[rowX][columnY - 1] = 1;
                 moveCells(rowX, columnY);
                 --columnY;
-                console.log(playCells[rowX][columnY]);
             } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
@@ -145,7 +143,6 @@ document.addEventListener('keydown', (event)=> {
                 playCells[rowX + 1][columnY] = 1;
                 moveCells(rowX, columnY);
                 ++rowX;
-                console.log(playCells[rowX][columnY]);
             } else {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
