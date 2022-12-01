@@ -7,20 +7,12 @@ let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
 let playCells = Array(11).fill(0).map(() => Array(11).fill(0));
 
 function startGame(){
-    rowX = 5;
-    columnY = 5;
     okLost = 0;
     for (let i = 1; i <= 9; ++i) {
         document.getElementById(i).innerHTML = "";
         for (let j = 1; j <= 9; ++j) {
             playCells[i][j] = 0;
         }
-    }
-    for (let i = 0; i <= 10; ++i) {
-        playCells[i][0] = 100;
-        playCells[0][i] = 100;
-        playCells[10][i] = 100;
-        playCells[i][10] = 100;
     }
     document.getElementById("YouLostMessage").innerHTML = "";
     document.getElementById("startGame").innerHTML = "Restart";
@@ -35,6 +27,16 @@ function startGame(){
             document.getElementById(i).appendChild(playingCells);
         }
     }
+
+    for (let i = 0; i <= 10; ++i) {
+        playCells[i][0] = 100;
+        playCells[0][i] = 100;
+        playCells[10][i] = 100;
+        playCells[i][10] = 100;
+    }
+
+    rowX = 5;
+    columnY = 5;
     document.getElementById(rowX * 10 + columnY).src = 'body_cell.png';
     document.getElementById(rowX * 10 + columnY - 1).src = 'body_cell.png';
     document.getElementById(rowX * 10 + columnY - 2).src = 'body_cell.png';
