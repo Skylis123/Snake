@@ -1,5 +1,5 @@
 let okStopPlaying;
-let x, y;
+let rowX, columnY;
 let okFood, okLost;
 let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
 
@@ -7,8 +7,8 @@ let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
 let playCells = Array(11).fill(0).map(() => Array(11).fill(0));
 
 function startGame(){
-    x = 5;
-    y = 5;
+    rowX = 5;
+    columnY = 5;
     okLost = 0;
     for (let i = 1; i <= 9; ++i) {
         document.getElementById(i).innerHTML = "";
@@ -16,7 +16,7 @@ function startGame(){
             playCells[i][j] = 0;
         }
     }
-    for (let i = 0; i < 10; ++i) {
+    for (let i = 0; i <= 10; ++i) {
         playCells[i][0] = 100;
         playCells[0][i] = 100;
         playCells[10][i] = 100;
@@ -35,12 +35,12 @@ function startGame(){
             document.getElementById(i).appendChild(playingCells);
         }
     }
-    document.getElementById(x * 10 + y).src = 'body_cell.png';
-    document.getElementById(x * 10 + y - 1).src = 'body_cell.png';
-    document.getElementById(x * 10 + y - 2).src = 'body_cell.png';
-    playCells[x][y] = 1;
-    playCells[x][y - 1] = 2;
-    playCells[x][y - 2] = 3;
+    document.getElementById(rowX * 10 + columnY).src = 'body_cell.png';
+    document.getElementById(rowX * 10 + columnY - 1).src = 'body_cell.png';
+    document.getElementById(rowX * 10 + columnY - 2).src = 'body_cell.png';
+    playCells[rowX][columnY] = 1;
+    playCells[rowX][columnY - 1] = 2;
+    playCells[rowX][columnY - 2] = 3;
 
     okFood = 0;
     while (okFood == 0) {
@@ -61,15 +61,15 @@ document.addEventListener('keydown', (event)=> {
         clearInterval(setIntervalIDs);
         clearInterval(setIntervalIDw);
         setIntervalIDd = setInterval(function () {
-            if (playCells[x][y + 1] == -1) {
+            if (playCells[rowX][columnY + 1] == -1) {
                 okFood = 0;
             }
-            if ((playCells[x][y + 1] == 0 || okFood == 0) && okLost == 0) {
-                document.getElementById(x * 10 + y + 1).src = 'body_cell.png';
-                playCells[x][y + 1] = 1;
-                moveCells(x, y);
-                ++y;
-            } else if (playCells[x][y + 1] != 2){
+            if ((playCells[rowX][columnY + 1] == 0 || okFood == 0) && okLost == 0) {
+                document.getElementById(rowX * 10 + columnY + 1).src = 'body_cell.png';
+                playCells[rowX][columnY + 1] = 1;
+                moveCells(rowX, columnY);
+                ++columnY;
+            } else if (playCells[rowX][columnY + 1] != 2){
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -85,16 +85,16 @@ document.addEventListener('keydown', (event)=> {
         clearInterval(setIntervalIDs);
         clearInterval(setIntervalIDd);
         setIntervalIDw = setInterval(function () {
-            if (playCells[x - 1][y] == -1) {
+            if (playCells[rowX - 1][columnY] == -1) {
                 okFood = 0;
             }
-            if ((playCells[x - 1][y] == 0 || okFood == 0) && okLost == 0) {
-                document.getElementById((x - 1) * 10 + y).src = 'body_cell.png';
-                playCells[x - 1][y] = 1;
-                moveCells(x, y);
-                --x;
-                console.log(playCells[x][y]);
-            } else if (playCells[x - 1][y] != 2) {
+            if ((playCells[rowX - 1][columnY] == 0 || okFood == 0) && okLost == 0) {
+                document.getElementById((rowX - 1) * 10 + columnY).src = 'body_cell.png';
+                playCells[rowX - 1][columnY] = 1;
+                moveCells(rowX, columnY);
+                --rowX;
+                console.log(playCells[rowX][columnY]);
+            } else if (playCells[rowX - 1][columnY] != 2) {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -110,16 +110,16 @@ document.addEventListener('keydown', (event)=> {
         clearInterval(setIntervalIDs);
         clearInterval(setIntervalIDd);
         setIntervalIDa = setInterval(function () {
-            if (playCells[x][y - 1] == -1) {
+            if (playCells[rowX][columnY - 1] == -1) {
                 okFood = 0;
             }
-            if ((playCells[x][y - 1] == 0 || okFood == 0) && okLost == 0) {
-                document.getElementById(x * 10 + y - 1).src = 'body_cell.png';
-                playCells[x][y - 1] = 1;
-                moveCells(x, y);
-                --y;
-                console.log(playCells[x][y]);
-            } else if (playCells[x][y - 1] != 2){
+            if ((playCells[rowX][columnY - 1] == 0 || okFood == 0) && okLost == 0) {
+                document.getElementById(rowX * 10 + columnY - 1).src = 'body_cell.png';
+                playCells[rowX][columnY - 1] = 1;
+                moveCells(rowX, columnY);
+                --columnY;
+                console.log(playCells[rowX][columnY]);
+            } else if (playCells[rowX][columnY - 1] != 2){
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
@@ -135,16 +135,16 @@ document.addEventListener('keydown', (event)=> {
         clearInterval(setIntervalIDw);
         clearInterval(setIntervalIDd);
         setIntervalIDs = setInterval(function () {
-            if (playCells[x + 1][y] == -1) {
+            if (playCells[rowX + 1][columnY] == -1) {
                 okFood = 0;
             }
-            if ((playCells[x + 1][y] == 0 || okFood == 0) && okLost == 0) {
-                document.getElementById((x + 1) * 10 + y).src = 'body_cell.png';
-                playCells[x + 1][y] = 1;
-                moveCells(x, y);
-                ++x;
-                console.log(playCells[x][y]);
-            } else if (playCells[x + 1][y] != 2) {
+            if ((playCells[rowX + 1][columnY] == 0 || okFood == 0) && okLost == 0) {
+                document.getElementById((rowX + 1) * 10 + columnY).src = 'body_cell.png';
+                playCells[rowX + 1][columnY] = 1;
+                moveCells(rowX, columnY);
+                ++rowX;
+                console.log(playCells[rowX][columnY]);
+            } else if (playCells[rowX + 1][columnY] != 2) {
                 okLost = 1 ;
                 clearInterval(setIntervalIDs);
                 clearInterval(setIntervalIDa);
