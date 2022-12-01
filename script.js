@@ -1,4 +1,3 @@
-let okStopPlaying;
 let rowX, columnY;
 let okFood, okLost;
 let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
