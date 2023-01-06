@@ -1,6 +1,6 @@
 let rowX, columnY;
 let okFood, okLost;
-let setIntervalIDw, setIntervalIDa, setIntervalIDs, setIntervalIDd ;
+let setIntervalID;
 
 
 let playCells = Array(11).fill(0).map(() => Array(11).fill(0));
@@ -50,10 +50,8 @@ function startGame(){
 
 document.addEventListener('keydown', (event)=> {  
     if (event.key == "d") {
-        clearInterval(setIntervalIDa);
-        clearInterval(setIntervalIDs);
-        clearInterval(setIntervalIDw);
-        setIntervalIDd = setInterval(function () {
+        clearInterval(setIntervalID);
+        setIntervalID = setInterval(function () {
             if (playCells[rowX][columnY + 1] == -1) {
                 okFood = 0;
             }
@@ -64,20 +62,15 @@ document.addEventListener('keydown', (event)=> {
                 ++columnY;
             } else {
                 okLost = 1 ;
-                clearInterval(setIntervalIDs);
-                clearInterval(setIntervalIDa);
-                clearInterval(setIntervalIDw);
-                clearInterval(setIntervalIDd);
+                clearInterval(setIntervalID);
                 document.getElementById('YouLostMessage').innerHTML = "You Lost"
             } 
         },200)
     } 
 
     if (event.key == "w") {
-        clearInterval(setIntervalIDa);
-        clearInterval(setIntervalIDs);
-        clearInterval(setIntervalIDd);
-        setIntervalIDw = setInterval(function () {
+        clearInterval(setIntervalID);
+        setIntervalID = setInterval(function () {
             if (playCells[rowX - 1][columnY] == -1) {
                 okFood = 0;
             }
@@ -88,20 +81,15 @@ document.addEventListener('keydown', (event)=> {
                 --rowX;
             } else {
                 okLost = 1 ;
-                clearInterval(setIntervalIDs);
-                clearInterval(setIntervalIDa);
-                clearInterval(setIntervalIDw);
-                clearInterval(setIntervalIDd);
+                clearInterval(setIntervalID);
                 document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
         },200)
     } 
 
     if (event.key == "a") {
-        clearInterval(setIntervalIDw);
-        clearInterval(setIntervalIDs);
-        clearInterval(setIntervalIDd);
-        setIntervalIDa = setInterval(function () {
+        clearInterval(setIntervalID);
+        setIntervalID = setInterval(function () {
             if (playCells[rowX][columnY - 1] == -1) {
                 okFood = 0;
             }
@@ -112,20 +100,15 @@ document.addEventListener('keydown', (event)=> {
                 --columnY;
             } else {
                 okLost = 1 ;
-                clearInterval(setIntervalIDs);
-                clearInterval(setIntervalIDa);
-                clearInterval(setIntervalIDw);
-                clearInterval(setIntervalIDd);
+                clearInterval(setIntervalID);
                 document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
         },200)
         } 
 
     if (event.key == "s") {  
-        clearInterval(setIntervalIDa);
-        clearInterval(setIntervalIDw);
-        clearInterval(setIntervalIDd);
-        setIntervalIDs = setInterval(function () {
+        clearInterval(setIntervalID);
+        setIntervalID = setInterval(function () {
             if (playCells[rowX + 1][columnY] == -1) {
                 okFood = 0;
             }
@@ -136,10 +119,7 @@ document.addEventListener('keydown', (event)=> {
                 ++rowX;
             } else {
                 okLost = 1 ;
-                clearInterval(setIntervalIDs);
-                clearInterval(setIntervalIDa);
-                clearInterval(setIntervalIDw);
-                clearInterval(setIntervalIDd);
+                clearInterval(setIntervalID);
                 document.getElementById('YouLostMessage').innerHTML = "You Lost"
             }
         },200)
