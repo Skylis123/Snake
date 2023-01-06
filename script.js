@@ -44,15 +44,7 @@ function startGame(){
     playCells[rowX][columnY - 2] = 3;
 
     okFood = 0;
-    while (okFood == 0) {
-        let foodRow = Math.floor(Math.random() * 9) + 1;
-        let foodColumn = Math.floor(Math.random() * 9) + 1;
-        if (playCells[foodRow][foodColumn] == 0) {
-            playCells[foodRow][foodColumn] = -1;
-            document.getElementById(foodRow * 10 + foodColumn).src = 'food_cell.png'
-            okFood = 1;
-        }
-    }
+    eatFood();
 }
 
 
@@ -176,15 +168,7 @@ function moveCells(X, Y) {
         } else if (okFood == 0) {
             ++playCells[row][column];
             ok = 1;
-            while (okFood == 0) {
-                let foodRow = Math.floor(Math.random() * 9) + 1;
-                let foodColumn = Math.floor(Math.random() * 9) + 1;
-                if (playCells[foodRow][foodColumn] == 0) {
-                    playCells[foodRow][foodColumn] = -1;
-                    document.getElementById(foodRow * 10 + foodColumn).src = 'food_cell.png'
-                    okFood = 1;
-                }
-            }
+            eatFood();
         } else {
             document.getElementById(row * 10 + column).src = 'empty_cell.png';
             playCells[row][column] = 0;
@@ -195,3 +179,14 @@ function moveCells(X, Y) {
 }
 
 
+function eatFood() {
+    while (okFood == 0) {
+        let foodRow = Math.floor(Math.random() * 9) + 1;
+        let foodColumn = Math.floor(Math.random() * 9) + 1;
+        if (playCells[foodRow][foodColumn] == 0) {
+            playCells[foodRow][foodColumn] = -1;
+            document.getElementById(foodRow * 10 + foodColumn).src = 'food_cell.png'
+            okFood = 1;
+        }
+    }
+}
